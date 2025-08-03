@@ -160,32 +160,20 @@ def create_config_panel():
             dbc.Select(
                 id="quick-llm",
                 options=[
-                    {"label": "gpt-4.1", "value": "gpt-4.1"},
-                    {"label": "gpt-4.1-nano", "value": "gpt-4.1-nano"},
-                    {"label": "gpt-4.1-mini", "value": "gpt-4.1-mini"},
-                    {"label": "gpt-4o", "value": "gpt-4o"},
-                    {"label": "o4-mini", "value": "o4-mini"},
-                    {"label": "o3-mini", "value": "o3-mini"},
-                    {"label": "o3", "value": "o3"},
-                    {"label": "o1", "value": "o1"},
+                    {"label": "qwen-3-32b", "value": "qwen-3-32b"},
+                    {"label": "qwen-3-235b", "value": "qwen-3-235b"},
                 ],
-                value="gpt-4.1-nano",
+                value="qwen-3-32b",
                 className="mb-2"
             ),
             html.H5("LLM Deep Thinker Model:", className="mt-3"),
             dbc.Select(
                 id="deep-llm",
                 options=[
-                    {"label": "gpt-4.1", "value": "gpt-4.1"},
-                    {"label": "gpt-4.1-nano", "value": "gpt-4.1-nano"},
-                    {"label": "gpt-4.1-mini", "value": "gpt-4.1-mini"},
-                    {"label": "gpt-4o", "value": "gpt-4o"},
-                    {"label": "o4-mini", "value": "o4-mini"},
-                    {"label": "o3-mini", "value": "o3-mini"},
-                    {"label": "o3", "value": "o3"},
-                    {"label": "o1", "value": "o1"},
+                    {"label": "qwen-3-235b", "value": "qwen-3-235b"},
+                    {"label": "qwen-3-32b", "value": "qwen-3-32b"},
                 ],
-                value="gpt-4.1-nano",
+                value="qwen-3-235b",
                 className="mb-3"
             ),
             # Dynamic Start/Stop button

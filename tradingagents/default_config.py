@@ -9,8 +9,8 @@ DEFAULT_CONFIG = {
         "dataflows/data_cache",
     ),
     # LLM settings
-    "deep_think_llm": "o3-mini",
-    "quick_think_llm": "gpt-4o-mini",
+    "deep_think_llm": "qwen-3-235b",
+    "quick_think_llm": "qwen-3-32b",
     # Debate and discussion settings
     "max_debate_rounds": 4,
     "max_risk_discuss_rounds": 3,
@@ -22,7 +22,8 @@ DEFAULT_CONFIG = {
     # Tool settings
     "online_tools": True,
     # API keys (these will be overridden by environment variables if present)
-    "openai_api_key": None,
+    "nebius_api_key": None,
+    "nebius_base_url": "https://api.nebius.ai/v1",
     "finnhub_api_key": None,
     "alpaca_api_key": None,
     "alpaca_secret_key": None,

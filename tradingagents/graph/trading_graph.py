@@ -56,7 +56,8 @@ class TradingAgentsGraph:
         )
 
         # Get API key from environment variables or config
-        api_key = get_api_key("openai_api_key", "OPENAI_API_KEY")
+        api_key = get_api_key("nebius_api_key", "NEBIUS_API_KEY")
+        base_url = get_api_key("nebius_base_url", "NEBIUS_BASE_URL") or "https://api.nebius.ai/v1"
 
         # Initialize LLMs with appropriate parameters based on model type
         deep_think_model = self.config["deep_think_llm"]
@@ -74,14 +75,16 @@ class TradingAgentsGraph:
             quick_think_kwargs["temperature"] = 0.2
         
         self.deep_thinking_llm = ChatOpenAI(
-            model=deep_think_model, 
+            model=deep_think_model,
             openai_api_key=api_key,
+            base_url=base_url,
             **deep_think_kwargs
         )
         
         self.quick_thinking_llm = ChatOpenAI(
-            model=quick_think_model, 
+            model=quick_think_model,
             openai_api_key=api_key,
+            base_url=base_url,
             **quick_think_kwargs
         )
         
@@ -146,7 +149,7 @@ class TradingAgentsGraph:
             "social": ToolNode(
                 [
                     # online tools
-                    self.toolkit.get_stock_news_openai,
+                    self.toolkit.get_stock_news_nebius,
                     # offline tools
                     self.toolkit.get_reddit_stock_info,
                     # crypto
@@ -156,7 +159,7 @@ class TradingAgentsGraph:
             "news": ToolNode(
                 [
                     # online tools
-                    self.toolkit.get_global_news_openai,
+                    self.toolkit.get_global_news_nebius,
                     self.toolkit.get_google_news,
                     # offline tools
                     self.toolkit.get_finnhub_news,
@@ -168,7 +171,7 @@ class TradingAgentsGraph:
             "fundamentals": ToolNode(
                 [
                     # online tools
-                    self.toolkit.get_fundamentals_openai,
+                    self.toolkit.get_fundamentals_nebius,
                     self.toolkit.get_defillama_fundamentals,
                     # offline tools
                     self.toolkit.get_finnhub_company_insider_sentiment,

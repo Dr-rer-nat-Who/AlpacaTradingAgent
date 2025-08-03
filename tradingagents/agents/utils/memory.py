@@ -8,15 +8,16 @@ from tradingagents.dataflows.config import get_api_key
 class FinancialSituationMemory:
     def __init__(self, name):
         # Get API key from environment variables or config
-        api_key = get_api_key("openai_api_key", "OPENAI_API_KEY")
-        self.client = OpenAI(api_key=api_key)
+        api_key = get_api_key("nebius_api_key", "NEBIUS_API_KEY")
+        base_url = get_api_key("nebius_base_url", "NEBIUS_BASE_URL") or "https://api.nebius.ai/v1"
+        self.client = OpenAI(api_key=api_key, base_url=base_url)
         self.chroma_client = chromadb.Client(Settings(allow_reset=True))
         self.situation_collection = self.chroma_client.get_or_create_collection(name=name)
 
     def get_embedding(self, text):
-        """Get OpenAI embedding for a text"""
+        """Get Nebius embedding for a text"""
         response = self.client.embeddings.create(
-            model="text-embedding-ada-002", input=text
+            model="text-embedding-qwen", input=text
         )
         return response.data[0].embedding
 
@@ -44,7 +45,7 @@ class FinancialSituationMemory:
         )
 
     def get_memories(self, current_situation, n_matches=1):
-        """Find matching recommendations using OpenAI embeddings"""
+        """Find matching recommendations using Nebius embeddings"""
         query_embedding = self.get_embedding(current_situation)
 
         results = self.situation_collection.query(

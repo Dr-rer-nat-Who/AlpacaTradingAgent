@@ -48,9 +48,9 @@ def get_api_key(key_name: str, env_var_name: str) -> str:
     return api_key
 
 
-def get_openai_api_key() -> str:
-    """Get OpenAI API key from environment variables or config."""
-    return get_api_key("openai_api_key", "OPENAI_API_KEY")
+def get_nebius_api_key() -> str:
+    """Get Nebius API key from environment variables or config."""
+    return get_api_key("nebius_api_key", "NEBIUS_API_KEY")
 
 
 def get_finnhub_api_key() -> str:

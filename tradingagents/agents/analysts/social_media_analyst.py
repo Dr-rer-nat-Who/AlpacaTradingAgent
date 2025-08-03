@@ -20,7 +20,7 @@ def create_social_media_analyst(llm, toolkit):
 
         if toolkit.config["online_tools"]:
             tools = [
-                toolkit.get_stock_news_openai,
+                toolkit.get_stock_news_nebius,
             ]
         else:
             tools = [
