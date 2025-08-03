@@ -533,18 +533,19 @@ def get_stockstats_indicator(
         return f"Error getting {indicator} for {symbol}: {str(e)}"
 
 
-def get_stock_news_openai(ticker, curr_date):
-    # Get API key from environment variables or config
-    api_key = get_api_key("openai_api_key", "OPENAI_API_KEY")
+def get_stock_news_nebius(ticker, curr_date):
+    # Get API key and base URL from environment variables or config
+    api_key = get_api_key("nebius_api_key", "NEBIUS_API_KEY")
+    base_url = get_api_key("nebius_base_url", "NEBIUS_BASE_URL") or "https://api.nebius.ai/v1"
     if not api_key:
-        return f"Error: OpenAI API key not found. Please set OPENAI_API_KEY environment variable."
-    
+        return f"Error: Nebius API key not found. Please set NEBIUS_API_KEY environment variable."
+
     try:
-        client = OpenAI(api_key=api_key)
-        
+        client = OpenAI(api_key=api_key, base_url=base_url)
+
         # Get the selected quick model from config
         config = get_config()
-        model = config.get("quick_think_llm", "gpt-4o-mini")  # fallback to default
+        model = config.get("quick_think_llm", "qwen-3-32b")  # fallback to default
         
         from datetime import datetime, timedelta
         start_date = (datetime.strptime(curr_date, "%Y-%m-%d") - timedelta(days=7)).strftime("%Y-%m-%d")
@@ -575,18 +576,19 @@ def get_stock_news_openai(ticker, curr_date):
         return f"Error fetching social media analysis for {ticker}: {str(e)}"
 
 
-def get_global_news_openai(curr_date):
-    # Get API key from environment variables or config
-    api_key = get_api_key("openai_api_key", "OPENAI_API_KEY")
+def get_global_news_nebius(curr_date):
+    # Get API key and base URL from environment variables or config
+    api_key = get_api_key("nebius_api_key", "NEBIUS_API_KEY")
+    base_url = get_api_key("nebius_base_url", "NEBIUS_BASE_URL") or "https://api.nebius.ai/v1"
     if not api_key:
-        return f"Error: OpenAI API key not found. Please set OPENAI_API_KEY environment variable."
-    
+        return f"Error: Nebius API key not found. Please set NEBIUS_API_KEY environment variable."
+
     try:
-        client = OpenAI(api_key=api_key)
-        
+        client = OpenAI(api_key=api_key, base_url=base_url)
+
         # Get the selected quick model from config
         config = get_config()
-        model = config.get("quick_think_llm", "gpt-4o-mini")  # fallback to default
+        model = config.get("quick_think_llm", "qwen-3-32b")  # fallback to default
         
         from datetime import datetime, timedelta
         start_date = (datetime.strptime(curr_date, "%Y-%m-%d") - timedelta(days=7)).strftime("%Y-%m-%d")
@@ -618,18 +620,19 @@ def get_global_news_openai(curr_date):
         return f"Error fetching global news analysis: {str(e)}"
 
 
-def get_fundamentals_openai(ticker, curr_date):
-    # Get API key from environment variables or config
-    api_key = get_api_key("openai_api_key", "OPENAI_API_KEY")
+def get_fundamentals_nebius(ticker, curr_date):
+    # Get API key and base URL from environment variables or config
+    api_key = get_api_key("nebius_api_key", "NEBIUS_API_KEY")
+    base_url = get_api_key("nebius_base_url", "NEBIUS_BASE_URL") or "https://api.nebius.ai/v1"
     if not api_key:
-        return f"Error: OpenAI API key not found. Please set OPENAI_API_KEY environment variable."
-    
+        return f"Error: Nebius API key not found. Please set NEBIUS_API_KEY environment variable."
+
     try:
-        client = OpenAI(api_key=api_key)
-        
+        client = OpenAI(api_key=api_key, base_url=base_url)
+
         # Get the selected quick model from config
         config = get_config()
-        model = config.get("quick_think_llm", "gpt-4o-mini")  # fallback to default
+        model = config.get("quick_think_llm", "qwen-3-32b")  # fallback to default
         
         from datetime import datetime, timedelta
         start_date = (datetime.strptime(curr_date, "%Y-%m-%d") - timedelta(days=30)).strftime("%Y-%m-%d")

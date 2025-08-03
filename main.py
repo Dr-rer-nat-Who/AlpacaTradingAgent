@@ -4,8 +4,8 @@ from tradingagents.default_config import DEFAULT_CONFIG
 
 # Create a custom config
 config = DEFAULT_CONFIG.copy()
-config["deep_think_llm"] = "gpt-4.1-mini"  # Use a different model
-config["quick_think_llm"] = "gpt-4.1-mini"  # Use a different model
+config["deep_think_llm"] = "qwen-3-235b"  # Use a different model
+config["quick_think_llm"] = "qwen-3-32b"  # Use a different model
 config["max_debate_rounds"] = 1  # Increase debate rounds
 config["online_tools"] = True  # Increase debate rounds
 

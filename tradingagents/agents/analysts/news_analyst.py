@@ -20,7 +20,7 @@ def create_news_analyst(llm, toolkit):
         is_crypto = "/" in ticker or "USD" in ticker.upper() or "USDT" in ticker.upper()
 
         if toolkit.config["online_tools"]:
-            tools = [toolkit.get_global_news_openai, toolkit.get_google_news]
+            tools = [toolkit.get_global_news_nebius, toolkit.get_google_news]
         else:
             if is_crypto:
                 tools = [

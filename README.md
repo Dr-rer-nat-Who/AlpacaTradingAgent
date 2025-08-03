@@ -122,8 +122,8 @@ For full functionality including real-time trading, you'll need to set up the fo
   - Set `ALPACA_USE_PAPER=True` for paper trading (recommended for testing)
   - Set `ALPACA_USE_PAPER=False` for live trading with real money
 
-- **OpenAI API Key** (Required for LLM agents):
-  - Sign up at [OpenAI Platform](https://platform.openai.com/api-keys)
+- **Nebius API Key** (Required for LLM agents):
+  - Sign up at [Nebius Console](https://console.nebius.ai/)
 
 #### Financial Data APIs
 - **Finnhub API Key** (Required for stock news and data):
@@ -222,7 +222,7 @@ The web interface offers comprehensive trading and analysis capabilities:
 
 ### Implementation Details
 
-Built with LangGraph for flexibility and modularity. The enhanced version integrates with multiple financial APIs and supports both paper and live trading through Alpaca. We recommend using `gpt-4o-mini` for testing to minimize API costs, as the framework makes numerous API calls across all 5 agents.
+Built with LangGraph for flexibility and modularity. The enhanced version integrates with multiple financial APIs and supports both paper and live trading through Alpaca. We recommend using `qwen-3-32b` for testing to minimize API costs, as the framework makes numerous API calls across all 5 agents.
 
 ### Python Usage
 
@@ -252,8 +252,8 @@ from tradingagents.default_config import DEFAULT_CONFIG
 
 # Create custom config for enhanced features
 config = DEFAULT_CONFIG.copy()
-config["deep_think_llm"] = "gpt-4o-mini"  # Cost-effective for testing
-config["quick_think_llm"] = "gpt-4o-mini"
+config["deep_think_llm"] = "qwen-3-235b"  # Default deep thinking model
+config["quick_think_llm"] = "qwen-3-32b"
 config["max_debate_rounds"] = 2  # Increase debate rounds
 config["online_tools"] = True  # Use real-time data
 config["enable_margin_trading"] = True  # Allow short selling
